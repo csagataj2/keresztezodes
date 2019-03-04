@@ -1,0 +1,45 @@
+package keresztezodes.x.model;
+
+class aLampa {
+
+	initial Init;
+
+	state Piros;
+
+	state Sarga;
+
+	state PirosSarga;
+
+	state Zold;
+
+	transition Initialize {
+		from Init;
+		to Piros;
+	}
+
+	transition PtoPS {
+		from Piros;
+		to PirosSarga;
+		trigger Lepes;
+	}
+
+	transition PStoZ {
+		from PirosSarga;
+		to Zold;
+		trigger Lepes;
+	}
+
+	transition ZtoS {
+		from Zold;
+		to Sarga;
+		trigger Lepes;
+	}
+
+	transition StoP {
+		from Sarga;
+		to Piros;
+		trigger Lepes;
+	}
+
+}
+

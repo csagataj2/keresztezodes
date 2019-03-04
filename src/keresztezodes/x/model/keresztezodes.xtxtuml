@@ -1,0 +1,60 @@
+package keresztezodes.x.model;
+
+class keresztezodes {
+
+	initial Init;
+
+	state AutokV; // autok varnak/keszulnek az indulasra
+
+	state AutokM; // autok mennek
+
+	state AutokL; // autok lassitanak
+
+	state GyalogM; // gyalogosok indulnak
+
+	transition Initialize {
+		from Init;
+		to GyalogM;
+	}
+
+	transition GytoAV {
+		from GyalogM;
+		to AutokV;
+		trigger Valt;
+		effect {
+			send new Lepes() to this->(KeresztGy.gy).one(); // ZV lesz
+			send new Lepes() to this->(KeresztA.a).one(); // PS lesz
+		}
+	}
+
+	transition AVtoAM {
+		from AutokV;
+		to AutokM;
+		trigger Valt;
+		effect {
+			send new Lepes() to this->(KeresztGy.gy).one(); // Piros
+			send new Lepes() to this->(KeresztA.a).one(); // Zold
+		}
+	}
+
+	transition AMtoAL {
+		from AutokM;
+		to AutokL;
+		trigger Valt;
+		effect {
+			send new Lepes() to this->(KeresztA.a).one(); // Sarga
+		}
+	}
+
+	transition ALtoGyM {
+		from AutokL;
+		to GyalogM;
+		trigger Valt;
+		effect {
+			send new Lepes() to this->(KeresztGy.gy).one(); // Zold
+			send new Lepes() to this->(KeresztA.a).one(); // Piros
+		}
+	}
+
+}
+

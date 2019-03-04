@@ -1,0 +1,37 @@
+package keresztezodes.x.model;
+
+class gyLampa {
+
+	initial Init;
+
+	state Piros;
+
+	state ZVillog;
+
+	state Zold;
+
+	transition Initialize {
+		from Init;
+		to Zold;
+	}
+
+	transition ZtoZV {
+		from Zold;
+		to ZVillog;
+		trigger Lepes;
+	}
+
+	transition ZVtoP {
+		from ZVillog;
+		to Piros;
+		trigger Lepes;
+	}
+
+	transition PtoZ {
+		from Piros;
+		to Zold;
+		trigger Lepes;
+	}
+
+}
+
